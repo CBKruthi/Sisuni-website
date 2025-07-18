@@ -5,6 +5,7 @@ import { Menu, X, User, LogOut } from "lucide-react";
 import Logo from "@/components/ui/logo";
 import { useNavigate } from "react-router-dom";
 
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -53,7 +54,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <Logo size="md" showText={true} />
+            <Logo size="md" showText={!['/login', '/signup'].includes(location.pathname)} />
           </Link>
 
           {/* Desktop Navigation */}
@@ -75,7 +76,8 @@ const Navbar = () => {
             {isLoggedIn ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="sm" className="border-purple-200">
+                  <Button size="sm"
+  className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white">
                     <User className="h-4 w-4 mr-2" />
                     {userEmail?.split("@")[0]}
                   </Button>

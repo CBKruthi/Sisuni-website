@@ -30,9 +30,21 @@ const Contact = () => {
   e.preventDefault();
 
   try {
-    const response = await axios.post(`${url}/api/contact`,formData );
+    const form = new FormData();
+    form.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
+    form.append("name", formData.name);
+    form.append("email", formData.email);
+    form.append("subject", formData.subject);
+    form.append("message", formData.message);
 
-    if (response.data.success) {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: form,
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
       toast({
         title: "Message Sent!",
         description: "Thank you for reaching out. We'll get back to you within 24 hours.",
@@ -42,24 +54,25 @@ const Contact = () => {
         name: "",
         email: "",
         subject: "",
-        message: ""
+        message: "",
       });
     } else {
       toast({
         title: "Failed to send",
-        description: response.data.message || "Something went wrong",
+        description: data.message || "Something went wrong",
         variant: "destructive",
       });
     }
   } catch (error: any) {
-    console.error("Error sending contact message:", error);
+    console.error("Web3Forms error:", error);
     toast({
       title: "Error!",
-      description: error?.response?.data?.message || "Internal server error",
+      description: error?.message || "An unexpected error occurred",
       variant: "destructive",
     });
   }
 };
+
 
   return (
     <div className="min-h-screen pt-20">
@@ -221,13 +234,6 @@ const Contact = () => {
                     </Button>
                   </form>
 
-                  <div className="mt-6 p-4 bg-muted/50 rounded-lg">
-                    <p className="text-sm text-muted-foreground">
-                      <strong>Note:</strong> This is a demo contact form. To enable actual email 
-                      functionality, you'll need to connect to a backend service like Supabase 
-                      using the green button in the top-right corner of Lovable.
-                    </p>
-                  </div>
                 </CardContent>
               </Card>
             </div>
