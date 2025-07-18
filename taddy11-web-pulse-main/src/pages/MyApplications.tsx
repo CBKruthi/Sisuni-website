@@ -291,6 +291,7 @@ const MyApplications = () => {
       return;
     }
     fetchApplications();
+    
   }, [navigate]);
 
   const fetchApplications = async () => {

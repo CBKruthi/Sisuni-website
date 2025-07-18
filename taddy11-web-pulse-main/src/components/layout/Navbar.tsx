@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, User, LogOut } from "lucide-react";
 import Logo from "@/components/ui/logo";
+import { useNavigate } from "react-router-dom";
 
 import {
   DropdownMenu,
@@ -14,6 +15,7 @@ import {
 import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -79,12 +81,15 @@ const Navbar = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
-                  <DropdownMenuItem asChild>
-                    <Link to="/my-applications" className="flex items-center">
-                      <User className="h-4 w-4 mr-2" />
-                      My Applications
-                    </Link>
-                  </DropdownMenuItem>
+                  {!isAdmin && (
+                     <DropdownMenuItem asChild>
+                        <Link to="/my-applications" className="flex items-center">
+                          <User className="h-4 w-4 mr-2" />
+                           My Applications
+                        </Link>
+                     </DropdownMenuItem>
+                  )}
+
                   {isAdmin && (
                     <DropdownMenuItem asChild>
                       <Link to="/admin" className="flex items-center">
@@ -94,10 +99,17 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   )}
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={logout} className="text-red-600">
-                    <LogOut className="h-4 w-4 mr-2" />
+                  <DropdownMenuItem
+                    onClick={() => {
+                     logout();
+                     navigate("/"); // Redirect to home after logout
+                    }}
+                   className="text-red-600"
+                  >
+                  <LogOut className="h-4 w-4 mr-2" />
                     Logout
                   </DropdownMenuItem>
+
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
@@ -147,11 +159,13 @@ const Navbar = () => {
               <div className="px-3 py-2">
                 {isLoggedIn ? (
                   <div className="space-y-2">
-                    <Button variant="outline" size="sm" className="w-full" asChild>
-                      <Link to="/my-applications" onClick={() => setIsMobileMenuOpen(false)}>
-                        My Applications
-                      </Link>
-                    </Button>
+                    {!isAdmin && (
+                        <Button variant="outline" size="sm" className="w-full" asChild>
+                           <Link to="/my-applications" onClick={() => setIsMobileMenuOpen(false)}>
+                              My Applications
+                           </Link>
+                        </Button>
+                    )}
                     {isAdmin && (
                       <Button variant="outline" size="sm" className="w-full" asChild>
                         <Link to="/admin" onClick={() => setIsMobileMenuOpen(false)}>
@@ -164,11 +178,12 @@ const Navbar = () => {
                       size="sm"
                       className="w-full text-red-600 border-red-200"
                       onClick={() => {
-                        logout();
-                        setIsMobileMenuOpen(false);
-                      }}
+                      logout();
+                      setIsMobileMenuOpen(false);
+                      navigate("/"); // Redirect to home after logout
+                    }}
                     >
-                      Logout
+                    Logout
                     </Button>
                   </div>
                 ) : (

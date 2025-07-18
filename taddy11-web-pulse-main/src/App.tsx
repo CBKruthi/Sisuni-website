@@ -10,13 +10,12 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Taddy11 from "./pages/Taddy11";
 import Contact from "./pages/Contact";
-import NotFound from "./pages/NotFound";
 import Career from "./pages/Career";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import MyApplications from "./pages/MyApplications";
 import AdminDashboard from "./pages/AdminDashboard";
-// import WhyJoinUs from "./pages/WhyJoinUs";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -35,7 +34,7 @@ const App = () => (
               <Route path="/services" element={<Services />} />
               <Route path="/taddy11" element={<Taddy11 />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/career"  element={<Career/>}/>
+              <Route path="/career" element={<Career />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/my-applications" element={<MyApplications />} />
