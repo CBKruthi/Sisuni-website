@@ -5,10 +5,12 @@ const fs = require('fs');
 const cors = require('cors');
 require('dotenv').config();
 
+
 const { mongoose } = require('./db'); // ✅ Use shared DB file
 const applicationRoutes = require('./routes/applications');
 const contactRoutes = require('./routes/contact');
 const jobRoutes = require('./routes/jobs');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 const PORT = process.env.PORT;
@@ -17,6 +19,7 @@ const PORT = process.env.PORT;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/api/auth', authRoutes);
 
 // Resume upload folder check
 const uploadsDir = path.join(__dirname, 'uploads/resumes');
