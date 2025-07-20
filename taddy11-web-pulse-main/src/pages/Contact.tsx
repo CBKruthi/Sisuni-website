@@ -72,7 +72,6 @@ const Contact = () => {
   }
 };
 
-
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
@@ -240,7 +239,6 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Services CTA */}
       {/* Services CTA */}
       <section className="py-20 bg-muted/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

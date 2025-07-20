@@ -8,7 +8,6 @@ import { useToast } from "@/hooks/use-toast";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import axios from "axios";
 
-
 const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 import {
