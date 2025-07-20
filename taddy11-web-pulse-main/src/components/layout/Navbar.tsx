@@ -35,7 +35,7 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Services", path: "/services" },
-    { name: "Taddy11", path: "/taddy11" },
+    { name: "Teddy11", path: "/teddy11" },
     { name: "Contact", path: "/contact" },
     { name: "Career", path: "/career" },
   ];
@@ -54,8 +54,9 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <Logo size="md" showText={!['/login', '/signup'].includes(location.pathname)} />
+              <Logo size="md" showText={true} />
           </Link>
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -63,7 +64,7 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`text-sm font-medium transition-colors duration-200 ${
+                className={`text-lg font-medium transition-colors duration-200 ${
                   isActive(item.path)
                     ? "text-purple-600"
                     : "text-muted-foreground hover:text-foreground"

@@ -5,7 +5,10 @@ import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import { FileText, Trash2, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import axios from "axios";
+
+
 const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 import {
@@ -19,6 +22,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { auth } from "@/context/firebase";
 
 interface Application {
   _id: string;
@@ -39,52 +43,48 @@ const MyApplications = () => {
   const navigate = useNavigate();
   const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
 
+  // ✅ Fetch user email from Firebase Auth
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    if (!isLoggedIn) {
-      navigate("/login");
-      return;
-    }
-    fetchApplications();
-    
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user?.email) {
+        setUserEmail(user.email);
+      } else {
+        navigate("/login"); // Redirect to login if no user
+      }
+    });
+
+    return () => unsubscribe();
   }, [navigate]);
+useEffect(() => {
+  if (userEmail) {
+    fetchApplications(userEmail);
+  }
+}, [userEmail]);
 
-  const fetchApplications = async () => {
-    try {
-      const userEmail = localStorage.getItem("userEmail");
-      if (!userEmail) {
-        navigate("/login");
-        return;
-      }
+const fetchApplications = async (email: string) => {
+  try {
+    const response = await fetch(`${baseURL}/api/applications/by-email/${encodeURIComponent(email)}`);
+    const data = await response.json();
+    console.log("Applications fetched:", data);
 
-      const encodedEmail = encodeURIComponent(userEmail.toLowerCase()); // 💡 Lowercase + encode
-      const response = await axios.get(
-        `${baseURL}/api/applications/by-email/${encodedEmail}`
-      );
+    setApplications(data.applications || []); // ✅ set the fetched data into state
+    setLoading(false);     // ✅ disable loading spinner
+  } catch (error) {
+    console.error("Error fetching applications:", error);
+    toast({
+      title: "Error",
+      description: "Failed to fetch applications",
+      variant: "destructive",
+    });
+    setLoading(false); // still stop loading even if there's an error
+  }
+};
 
-      if (response.data.success) {
-        setApplications(response.data.applications);
-      } else {
-        console.warn("⚠️ No applications found");
-        setApplications([]);
-      }
-    } catch (error: any) {
-      console.error("❌ Error fetching applications:", error);
-      if (error.response?.status === 404) {
-        setApplications([]);
-      } else {
-        toast({
-          title: "Error",
-          description: "Failed to fetch applications",
-          variant: "destructive",
-        });
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
 
+
+  // ✅ Delete handler
   const handleDelete = async (applicationId: string) => {
     try {
       const response = await axios.delete(
