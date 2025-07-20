@@ -8,7 +8,6 @@ import Footer from "./components/layout/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
-import Taddy11 from "./pages/Taddy11";
 import Contact from "./pages/Contact";
 import Career from "./pages/Career";
 import Login from "./pages/Login";
@@ -16,6 +15,7 @@ import Signup from "./pages/Signup";
 import MyApplications from "./pages/MyApplications";
 import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
+import Teddy11 from "./pages/Teddy11";
 
 const queryClient = new QueryClient();
 
@@ -32,7 +32,7 @@ const App = () => (
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
-              <Route path="/taddy11" element={<Taddy11 />} />
+              <Route path="/teddy11" element={<Teddy11 />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/career" element={<Career />} />
               <Route path="/login" element={<Login />} />

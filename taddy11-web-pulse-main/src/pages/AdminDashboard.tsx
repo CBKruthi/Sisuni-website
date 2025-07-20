@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useNavigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const baseURL = import.meta.env.VITE_API_BASE_URL;
 
@@ -44,6 +45,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { auth } from "@/context/firebase";
 
 interface Application {
   _id: string;
@@ -97,19 +99,20 @@ const AdminDashboard = () => {
     benefits: [""],
     isActive: true
   });
-
-  useEffect(() => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    const isAdmin = localStorage.getItem('isAdmin');
-    
-    if (!isLoggedIn || !isAdmin) {
-      navigate('/login');
-      return;
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (user) => {
+    if (user?.email?.toLowerCase() === "contactus@sisunitech.com") {
+      // Admin verified ✅
+      fetchApplications();
+      fetchJobPositions();
+    } else {
+      navigate("/login"); // ❌ Not admin or not logged in
     }
-    
-    fetchApplications();
-    fetchJobPositions();
-  }, [navigate]);
+  });
+
+  return () => unsubscribe(); // Cleanup
+}, [navigate]);
+
 
   const fetchApplications = async () => {
     try {
@@ -201,7 +204,7 @@ const AdminDashboard = () => {
   const handleCreateJob = () => {
     const createJob = async () => {
       try {
-        const userEmail = localStorage.getItem('userEmail') || 'admin';
+        const userEmail = getAuth().currentUser?.email || "admin";
         const jobData = {
           ...newJob,
           requirements: newJob.requirements.filter(req => req.trim() !== ''),

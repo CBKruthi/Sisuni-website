@@ -26,7 +26,7 @@ const features = [
   }
 ];
 
-const Taddy11 = () => {
+const Teddy11 = () => {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
@@ -40,7 +40,7 @@ const Taddy11 = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl sm:text-6xl font-bold mb-6">
-                <span className="bg-gradient-hero bg-clip-text text-transparent">Taddy11</span>
+                <span className="bg-gradient-hero bg-clip-text text-transparent">Teddy 11</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
                 Experience the ultimate skill-based rummy game with real-money tournaments, 
@@ -75,7 +75,7 @@ const Taddy11 = () => {
                   <div className="w-32 h-32 bg-gradient-hero rounded-3xl mx-auto mb-6 flex items-center justify-center shadow-glow">
                     <span className="text-white text-4xl font-bold">T11</span>
                   </div>
-                  <h3 className="text-2xl font-bold mb-2">Taddy11</h3>
+                  <h3 className="text-2xl font-bold mb-2">Teddy 11</h3>
                   <p className="text-muted-foreground mb-6">Skill-Based Rummy Game</p>
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
@@ -99,7 +99,7 @@ const Taddy11 = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
-              Why Choose <span className="bg-gradient-hero bg-clip-text text-transparent">Taddy11</span>
+              Why Choose <span className="bg-gradient-hero bg-clip-text text-transparent">Teddy 11</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Experience the perfect blend of skill, strategy, and excitement
@@ -175,7 +175,7 @@ const Taddy11 = () => {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-gradient-hero rounded-2xl p-12 text-white text-center">
-            <h2 className="text-3xl font-bold mb-8">Taddy11 by the Numbers</h2>
+            <h2 className="text-3xl font-bold mb-8">Teddy 11 by the Numbers</h2>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div>
@@ -206,7 +206,7 @@ const Taddy11 = () => {
             <div>
               <h2 className="text-3xl font-bold mb-6">Game Features</h2>
               <p className="text-xl text-muted-foreground mb-8">
-                Taddy11 offers a comprehensive rummy experience with features designed 
+                Teddy 11 offers a comprehensive rummy experience with features designed 
                 for both beginners and professional players.
               </p>
               
@@ -230,7 +230,7 @@ const Taddy11 = () => {
             </div>
 
             <div className="bg-gradient-card rounded-2xl p-8 shadow-tech">
-              <h3 className="text-2xl font-bold mb-6 text-center">Download Taddy11</h3>
+              <h3 className="text-2xl font-bold mb-6 text-center">Download Teddy11</h3>
               <p className="text-muted-foreground text-center mb-6">
                 Join the excitement and start playing skill-based rummy today!
               </p>
@@ -280,4 +280,4 @@ const Taddy11 = () => {
   );
 };
 
-export default Taddy11;
+export default Teddy11;

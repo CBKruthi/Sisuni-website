@@ -7,9 +7,9 @@ require('dotenv').config();
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  dbName: 'sisuni-portal'
+  dbName: 'SisuniDB'
 })
-.then(() => console.log('✅ Connected to MongoDB (sisuni-portal)'))
+.then(() => console.log(`✅ Connected to MongoDB { ${process.env.db} }`))
 .catch((err) => {
   console.error('❌ Failed to connect to MongoDB:', err);
   process.exit(1);

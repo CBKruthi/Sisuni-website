@@ -38,7 +38,7 @@ const HeroSection = () => {
             </Button>
             <Button variant="outline" size="lg" asChild>
               <Link to="/taddy11">
-                Meet Taddy11
+                Meet Taddy 11
               </Link>
             </Button>
           </div>
