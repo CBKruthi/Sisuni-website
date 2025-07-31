@@ -72,11 +72,11 @@ const fetchApplications = async (email: string) => {
     setLoading(false);     // ✅ disable loading spinner
   } catch (error) {
     console.error("Error fetching applications:", error);
-    toast({
-      title: "Error",
-      description: "Failed to fetch applications",
-      variant: "destructive",
-    });
+    // toast({
+    //   title: "Error",
+    //   description: "Failed to fetch applications",
+    //   variant: "destructive",
+    // });
     setLoading(false); // still stop loading even if there's an error
   }
 };
