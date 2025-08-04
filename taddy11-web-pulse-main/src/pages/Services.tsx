@@ -2,6 +2,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Code, Shield, Cpu, Brain, CheckCircle, ArrowDown } from "lucide-react";
+import FloatingElements from "@/components/3d/FloatingElements";
+import ParticleField from "@/components/3d/ParticleField";
 
 const services = [
   {
@@ -68,9 +70,11 @@ const services = [
 
 const Services = () => {
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-20 relative">
+      <ParticleField className="opacity-20" />
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-muted/50 to-background">
+      <section className="py-20 bg-gradient-to-br from-muted/50 to-background relative">
+        <FloatingElements className="opacity-10" count={15} />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl font-bold mb-6">
@@ -88,13 +92,13 @@ const Services = () => {
       </section>
 
       {/* Services Grid */}
-      <section className="py-20">
+      <section className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-20">
             {services.map((service, index) => (
               <div 
                 key={service.title}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative ${
                   index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
                 }`}
               >
@@ -142,7 +146,7 @@ const Services = () => {
 
                 {/* Visual Card */}
                 <div className={index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
-                  <Card className="bg-gradient-card shadow-tech hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                  <Card className="bg-gradient-card shadow-tech hover:shadow-glow transition-all duration-300 transform hover:scale-105 backdrop-blur-sm border border-purple-200/20">
                     <CardHeader className="text-center pb-8">
                       <div className={`w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-r ${service.gradient} flex items-center justify-center`}>
                         <service.icon className="h-10 w-10 text-white" />

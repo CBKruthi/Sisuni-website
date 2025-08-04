@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Star, Shield, Users, Trophy, Smartphone, CheckCircle, Play } from "lucide-react";
+import CubeScene from "@/components/3d/CubeScene";
+import ParticleField from "@/components/3d/ParticleField";
 
 const features = [
   {
@@ -28,7 +30,8 @@ const features = [
 
 const Teddy11 = () => {
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-20 relative">
+      <ParticleField className="opacity-30" particleCount={150} />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-primary/10 to-accent/10 relative overflow-hidden">
         <div className="absolute inset-0">
@@ -69,22 +72,20 @@ const Teddy11 = () => {
               </div>
             </div>
 
-            <div className="relative">
-              <div className="bg-gradient-card rounded-3xl p-8 shadow-tech transform rotate-3 hover:rotate-0 transition-transform duration-500">
+            <div className="relative h-[500px]">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-3xl backdrop-blur-sm border border-purple-300/20"></div>
+              <CubeScene className="relative z-10" />
+              <div className="absolute top-4 right-4 bg-gradient-card rounded-2xl p-4 shadow-tech backdrop-blur-sm border border-purple-200/20">
                 <div className="text-center">
-                  <div className="w-32 h-32 bg-gradient-hero rounded-3xl mx-auto mb-6 flex items-center justify-center shadow-glow">
-                    <span className="text-white text-4xl font-bold">T11</span>
+                  <div className="w-16 h-16 bg-gradient-hero rounded-2xl mx-auto mb-3 flex items-center justify-center shadow-glow">
+                    <span className="text-white text-xl font-bold">T11</span>
                   </div>
-                  <h3 className="text-2xl font-bold mb-2">Teddy 11</h3>
-                  <p className="text-muted-foreground mb-6">Skill-Based Rummy Game</p>
-                  <div className="grid grid-cols-2 gap-4 text-sm">
+                  <h3 className="text-lg font-bold mb-1">Teddy 11</h3>
+                  <p className="text-xs text-muted-foreground mb-3">Skill-Based Rummy</p>
+                  <div className="grid grid-cols-1 gap-2 text-xs">
                     <div>
-                      <div className="text-2xl font-bold text-primary">₹10L+</div>
+                      <div className="text-lg font-bold text-primary">₹10L+</div>
                       <div className="text-muted-foreground">Prize Pool</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-primary">24/7</div>
-                      <div className="text-muted-foreground">Tournaments</div>
                     </div>
                   </div>
                 </div>

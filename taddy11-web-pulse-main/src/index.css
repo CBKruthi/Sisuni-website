@@ -148,3 +148,36 @@
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
+
+/* 3D Scene Styles */
+.cube-scene-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.cube-scene-container canvas {
+  border-radius: 1rem;
+}
+
+/* Particle effects */
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+.particle-element {
+  animation: particle-float 6s ease-in-out infinite;
+}
+
+/* Glow effects for 3D elements */
+.glow-purple {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
